@@ -9,8 +9,10 @@ A key-value storage for laravel
 * [Single Storing](#single-storing)          
 * [Mass Storing](#mass-storing)            
 * [Grouped Data](#grouped-data)           
-* [Retrieving](#Retrieving)           
-* [Retrieving From Other Storage](#retrieving-from-other-storage)           
+* [Retrieving](#retrieving)           
+* [Retrieving From Other Storage](#retrieving-from-other-storage)   
+* [Check For Existence](#check-for-existence)   
+
 
 
 ## Introduction
@@ -27,8 +29,7 @@ To get started with Armincms Option, first run:
 Then publish configuration:
 
 ```
-	php artisan publish --tag=armincms.option
-
+    php artisan publish --tag=armincms.option
 ```
 
 This command publishes `config` and `migration` file into the appropriate path.
@@ -41,7 +42,14 @@ The default storage is `file`. for change the storage type you have two way:
 * With `.env` file: `OPTION_DRIVER=database` 
 * With `Config` respository: `Config::set('option.default', 'file')`
  
-**if you wnat use `database` storage you should run `php artisan migrate`.
+**Attention 1:**
+	*if you want use database storage you should run `php artisan migrate` in console.*
+	
+**Attention 2:**
+	*For access to `option-manager` by laravel container you can use `app('armincms.option')`*
+	
+**Attention 3:**
+	*For simple coding: you can use helper `option()` insteadof `app('armincms.option')`*
 
 
 ### Single Storing
@@ -49,23 +57,23 @@ The default storage is `file`. for change the storage type you have two way:
 There exists two way for storing single data:
 
 * first:
-	`app('armincms.option')->put(key, value)`
+	`option()->put(key, value)`
 
 * second: 
-	`option()->key = value`
-
-
+	`option()->key = value` 
+	
+	
 
 ### Mass Storing 
 
-For mass storing data use the following method:
+For mass storing data use the followings method: 
 
-	`app('armincms.option')->putMany([
+	option()->putMany([
 		key1 => value1,
 		key2 => value2,
-	])`
-
-
+	])  
+	
+	
 
 ### Grouped Data 
 
@@ -86,11 +94,11 @@ Also; it's possible to attach a tag into data when mass storing:
 
 There exist many ways to retrieve your data.you can retrieve your data, `single` or `multiple`.
 
-* single retrieving:
+*single retrieving:*
 
-To retrieve an option, you can use `option()->key`. but if you need `default` value for missed values;  you can use `option(key, default)`. 
+To retrieve an option, you can use `option()->key`. but if you need `default` value for missed values;  you can use `option(key, default)` or `option()->get(key, default)` . 
 
-* multiple retrieving:
+*multiple retrieving:*
 
 Also, retrieving multiple options is not difficult. you can retrieve many values by its keys with the `many` method; like  `option()->many(keys)`.
 If you need default value for missed values; you can pass an associative array of `keys` and `default values`; like following:
@@ -104,10 +112,8 @@ If you need default value for missed values; you can pass an associative array o
 		key5 => key5-default
 	])
 ```
-And there exists two way for retrieving `tagged` values like following:
 
-* first : `option()->tag(tag)` 
-* second: `app('armincms.option')->tag(key)` 
+And you can retrieve `tagged` values with `option()->tag(tag)`. 
 
 
 
@@ -125,3 +131,7 @@ For retrieve you can use this:
 	app('armincms.option')->store('file')->tag(tag) 
 	app('armincms.option')->store('file')->many(keys)  
 
+
+### Check For Existence
+If you want to check for existance of an option ; you can use helper `option_exists(key)` or `option()->has(key)`.
+ 
