@@ -1,4 +1,5 @@
-#Armincms Option Package (version : 0.1.0)
+#Armincms Option Package   
+A key-value storage for laravel 
 
 ##### Table of Contents   
 
@@ -122,4 +123,5 @@ For retrieve you can use this:
 
 	app('armincms.option')->store('file')->get(key, default)
 	app('armincms.option')->store('file')->tag(tag) 
-	app('armincms.option')->store('file')->many(keys) 
+	app('armincms.option')->store('file')->many(keys)  
+
