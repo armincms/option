@@ -1,4 +1,4 @@
-#Armincms Option Package   
+# Option   
 A key-value storage for laravel 
 
 ##### Table of Contents   
