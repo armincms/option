@@ -29,7 +29,7 @@ To get started with Armincms Option, first run:
 Then publish configuration:
 
 ```
-    php artisan publish --tag=armincms.option
+    php artisan vendor:publish --tag=armincms.option
 ```
 
 This command publishes `config` and `migration` file into the appropriate path.
