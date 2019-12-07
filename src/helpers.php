@@ -24,7 +24,7 @@ if (! function_exists('option_exists')) {
      * @param  string  $key
      * @return boolean
      */
-    function option_exists(String $key)
+    function option_exists(string $key)
     {     
     	return option()->has($key); 
     }
