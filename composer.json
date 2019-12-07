@@ -1,0 +1,39 @@
+{
+    "name": "armincms/option",
+    "description": "The armincms option package.",
+    "license": "MIT",
+    "homepage": "https://armincms.com",
+    "support": { 
+    },
+    "authors": [
+        {
+            "name": "Ismail Zare",
+            "email": "zarehesmail@gmail.com"
+        }
+    ],
+    "require": { 
+    },
+    "autoload": {
+        "psr-4": {
+            "Armincms\\Option\\": "src"
+        },
+        "files" : [
+            "src/helpers.php"
+        ]
+    },
+    "extra": { 
+        "laravel" : {
+            "providers" : [ 
+                "Armincms\\Option\\OptionServiceProvider"
+            ],
+            "aliases" : {   
+            }
+        }
+    },
+    "suggest": { 
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
