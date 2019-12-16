@@ -79,14 +79,14 @@ For mass storing data use the followings method:
 
 For grouping many option, can pass `tag` parameter when storing a data: 
 
-	`app('armincms.option')->put(key, value, tag)`
+	app('armincms.option')->put(key, value, tag)
 
 Also; it's possible to attach a tag into data when mass storing:
 
-	`app('armincms.option')->putMany([
+	app('armincms.option')->putMany([
 		key1 => value1,
 		key2 => value2,
-	], tag)`
+	], tag)
 
 
 
