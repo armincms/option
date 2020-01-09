@@ -99,7 +99,11 @@ class DatabaseStore implements Store
      */
     public function put(string $key, $value, string $tag = null) : bool
     { 
-       try {
+        if($this->has($key)) {
+            return $this->update($key, $value, $tag);
+        }
+
+       try { 
             return $this->table()->insert([
                 'key'   => $key,
                 'value' => $this->serialize($value), 
@@ -108,6 +112,37 @@ class DatabaseStore implements Store
         } catch (Exception $e) { 
             return false;
         }  
+    }
+    
+    /**
+     * Update the existence option value.
+     *
+     * @param  string $key
+     * @param  mixed  $value
+     * @param  string $tag
+     * @return bool
+     */
+    public function update(string $key, $value, string $tag = null) : bool
+    {
+        try { 
+            return $this->table()->where('key', '=', $key)->update([ 
+                'value' => $this->serialize($value), 
+                'tag'   => $tag
+            ]) >= 0;
+        } catch (Exception $e) { 
+            return false;
+        }
+    }
+
+    /**
+     * Indicate that the option exists.
+     *
+     * @param  string $key 
+     * @return bool
+     */
+    public function has(string $key) : bool
+    { 
+        return $this->table()->where('key', '=', $key)->count() > 0;
     }
     
     /**
