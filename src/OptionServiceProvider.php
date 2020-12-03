@@ -37,7 +37,7 @@ class OptionServiceProvider extends ServiceProvider implements DeferrableProvide
         ], ['armincms.option', 'armincms.option.migrations']);
 
         $this->publishes([
-            __DIR__.'/../config/option.php' => config_path()
+            __DIR__.'/../config/option.php' => config_path('option.php')
         ], ['armincms.option', 'armincms.option.config']); 
     }
 
